@@ -3,11 +3,10 @@ package org.project.entity.enemies;
 import org.project.entity.Entity;
 import org.project.object.weapons.Weapon;
 
-public class Skeleton extends Enemy
+public class Dragon extends Enemy
 {
-    private boolean hasResurrected = false;
 
-    public Skeleton(String name, int hp, int mp, Weapon weapon)
+    public Dragon(String name, int hp, int mp, Weapon weapon)
     {
         super(name, hp, mp, weapon);
     }
@@ -15,25 +14,23 @@ public class Skeleton extends Enemy
     @Override
     public void useAbility(Entity target)
     {
-        System.out.println("The Skeleton swings its weapon with deadly precision!");
-        if (this.getHp() == 0 && !hasResurrected)
-        {
-            resurrectSkeleton();  // Resurrect the skeleton if HP reaches 0
-            this.hasResurrected = true;
-            System.out.println("The Skeleton rises from the grave with " + this.getHp() + " HP!");
-        }
+        System.out.println("The Dragon releases a devastating flame, ignoring all resistance!");
+        int damage = 30;
+        target.takeDamage(damage);
+        System.out.println("The Dragon scorches the enemy with intense heat!");
     }
 
+    // Dragon's attack logic depending on its HP
     @Override
     public void attack(Entity target)
     {
         if (this.getHp() <= 50)
         {
-            useAbility(target);
+            useAbility(target); // Use ability when HP is low
         }
         else
         {
-            super.attack(target);
+            super.attack(target); // Normal attack
         }
     }
 
@@ -64,3 +61,5 @@ public class Skeleton extends Enemy
         return 0;
     }
 }
+
+

@@ -1,32 +1,73 @@
 package org.project.location;
 
 import org.project.entity.enemies.Enemy;
+import org.project.entity.enemies.Skeleton;
+import org.project.entity.enemies.Dragon;
+import org.project.entity.enemies.Goblin;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Location {
+public class Location
+{
     private String name;
+    private String description;
+    private List<Enemy> enemies;
+    private boolean isVisited = false;
+    private List<Location> connectedLocations;
 
-    private ArrayList<Enemy> enemies;
-
-    public Location(ArrayList<Location> locations, ArrayList<Enemy> enemies) {
-        this.locations = locations;
-        this.enemies = enemies;
+    public Location(String name, String description, List<Enemy> enemies)
+    {
+        this.name = name;
+        this.description = description;
+        this.isVisited = false;
+        this.enemies = new ArrayList<>(enemies);;
+        this.connectedLocations = new ArrayList<>();
     }
 
-    /*
-    TODO: (BONUS) RESET EACH LOCATION AFTER PLAYER LEAVES
-    */
+    public void addEnemy(Enemy enemy)
+    {
+        this.enemies.add(enemy);
+    }
 
-    public String getName() {
+    public void addConnectedLocation(Location location)
+    {
+        this.connectedLocations.add(location);
+    }
+
+    public boolean isVisited()
+    {
+        return isVisited;
+    }
+
+    public String getName()
+    {
         return name;
     }
 
-    public ArrayList<Location> getLocations() {
-        return locations;
+    public String getDescription()
+    {
+        return description;
     }
 
-    public ArrayList<Enemy> getEnemies() {
+    public List<Enemy> getEnemies()
+    {
         return enemies;
+    }
+
+    public List<Location> getConnectedLocations()
+    {
+        return connectedLocations;
+    }
+
+    @Override
+    public String toString()
+    {
+        return name + " - " + description;
+    }
+
+    public void setVisited(boolean visited)
+    {
+        isVisited = visited;
     }
 }

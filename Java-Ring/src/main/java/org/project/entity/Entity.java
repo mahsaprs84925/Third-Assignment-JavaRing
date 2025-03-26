@@ -1,6 +1,7 @@
 package org.project.entity;
 
-public interface Entity {
+public interface Entity
+{
     void attack(Entity target);
 
     void defend();
@@ -14,6 +15,10 @@ public interface Entity {
     int getMaxHP();
 
     int getMaxMP();
+
+    int getHp();
+
+    String getName();
 
     /*
     TODO: ADD OTHER REQUIRED AND BONUS METHODS
